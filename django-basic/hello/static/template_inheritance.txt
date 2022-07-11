@@ -1,0 +1,14 @@
+TEMPLATE INHERITANCE
+
+create a base.html file(block autocomplete)
+<title>{% block title %}{% endblock title %} </title>(for title template)
+ {% block body %}This is body block{% endblock body %}(for body)
+
+
+In index or other web page file:
+1st line= {% extends 'base.html' %}
+
+
+
+
+
