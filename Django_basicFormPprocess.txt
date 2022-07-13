@@ -1,0 +1,89 @@
+django-admin startproject hello 
+python manage.py startapp home
+
+create urls.py in home
+
+=>urls.py (hello)
+from django.contrib import admin
+from django.urls import path,include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',include('home.urls'))
+]
+
+=>urls.py (home)
+
+from django.contrib import admin
+from django.urls import path
+from home import views
+urlpatterns = [
+   path("",views.index, name='home')
+
+]
+
+
+=>views.py
+def index(request):
+    return render(request,"index.html")
+
+def contact(request):       
+    return render(request,"contact.html")
+
+=>settings.py
+#static files
+#added manually
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
+
+#templates
+'DIRS': [BASE_DIR / "templates"],
+
+
+TEMPLATE INHERITANCE
+
+create a base.html file(block autocomplete)
+<title>{% block title %}{% endblock title %} </title>(for title template)
+ {% block body %}This is body block{% endblock body %}(for body)
+
+
+In index or other web page file:
+1st line= {% extends 'base.html' %}
+
+csrf verification: below form opening {% csrf_token %}
+
+creation of database:
+=>models.py:
+class Contact(models.model):
+   name=models.CharField(max_length=150)
+   email=models.CharField(max_length=150) #can use EmailField
+   phone=models.CharField(max_length=150)
+   desc=models.TextField()
+   date=models.DateField()
+
+=>admin.py
+from home.models import Contact #from foldername.models import modelname
+
+# Register your models here.
+admin.site.register(Contact)
+
+=>apps.py
+#Copy class name
+HomeConfig
+
+=>settings.py
+Installed_Apps mein add 'home.apps.HomeConfig' (home.apps.class name)
+
+=>terminal
+python manage.py makemigrations (make changes)
+python manage.py migrate (apply changes)
+
+=>views.py
+#in function of page where form has to be submitted
+
+if request.method=="POST":
+   name=request.POST.get('name') #(All the fields)
+
+
