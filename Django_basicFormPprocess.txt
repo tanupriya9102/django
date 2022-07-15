@@ -88,6 +88,7 @@ python manage.py makemigrations (make changes)
 python manage.py migrate (apply changes)
 
 =>views.py
+from home.models import Contact(name of model)
 #in function of page where form has to be submitted
 
 if request.method=="POST":
@@ -95,5 +96,25 @@ if request.method=="POST":
    
    
  
+#adding success message 
+Below navbar:
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show my-0" role="alert">
+  <strong>{{ message }}</strong>
+  <button type="button" class="close" data-bs-dismiss="alert"  aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+ {% endfor %}
+{% endif %}
 
+
+
+In views.py
+from django.contrib import messages
+
+in function of page where form submiteed:
+after saving object
+messages.success(request, 'Your message has been sent!')  
 
