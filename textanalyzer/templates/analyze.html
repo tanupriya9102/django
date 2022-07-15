@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    .module-border-wrap {
+        max-width: 700px;
+        height:500px;
+        padding: 1rem;
+        position: relative;
+        left:200px;
+        background:linear-gradient(to bottom right, #823742 0%, #fc92a2 100%);    
+        padding: 3px;
+      }
+      
+      .module {
+        background: #222;
+        height:494px;
+        color: white;
+        padding: 2rem;
+      }
+
+{% endblock content %}
+{% block body %}
+
+<div class="container">
+    <form action="/index">
+    <div class="module-border-wrap">
+        <div class="module">
+            <h2>{{purpose}}</h2>
+        <p>
+            {{analyzed_text}}
+        </p>
+        <button type="submit" class="btn btn-primary">Back to home</button>
+
+    
+    </div>
+    </div>
+    </form>
+
+</div>
+
+
+
+{% comment %} 
+<div class="container">
+         
+        
+</div> {% endcomment %}
+
+{% endblock body %}
