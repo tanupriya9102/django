@@ -24,8 +24,15 @@ urlpatterns = [
 
 
 =>views.py
+from django.http import HttpResponse
+def index(request):
+    return HttpResponse("<em> My app 2!!</em>")
+    
+    OR 
+    
 def index(request):
     return render(request,"index.html")
+    
 
 def contact(request):       
     return render(request,"contact.html")
