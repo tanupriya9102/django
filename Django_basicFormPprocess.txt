@@ -63,7 +63,7 @@ csrf verification: below form opening {% csrf_token %}
 
 creation of database:
 =>models.py:
-class Contact(models.model):
+class Contact(models.Model):
    name=models.CharField(max_length=150)
    email=models.CharField(max_length=150) #can use EmailField
    phone=models.CharField(max_length=150)
@@ -92,5 +92,8 @@ python manage.py migrate (apply changes)
 
 if request.method=="POST":
    name=request.POST.get('name') #(All the fields)
+   
+   
+ 
 
 
