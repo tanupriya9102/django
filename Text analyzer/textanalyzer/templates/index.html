@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+   [type="radio"]:checked+label:after {
+     background-color: red;
+     border: 2px solid red;
+  
+}
+{% endblock content %}
+
+
+{% block body %}
+<div class="container mt-4">
+  <form action="/analyze" method="POST">
+    {% csrf_token %}
+      <h2>Enter Your text to be edited:</h2>
+        <div class="form-group">
+          <label for="text"></label>
+          <textarea class="form-control" id="text" name="text" rows="3"></textarea>
+        </div>
+        {% comment %} remove punctuations {% endcomment %}
+        <div class="form-check radio-col">
+          <input type="radio" class="form-check-input" id="exampleCheck1" name="antxt" value="removepunc">
+          <label class="form-check-label"  for="exampleCheck1">Remove punctuations</label>
+        </div>
+        {% comment %} remove white spaces {% endcomment %}
+        <div class="form-check radio-col">
+          <input type="radio" class="form-check-input" id="exampleCheck1" name="antxt" value="removews">
+          <label class="form-check-label"  for="exampleCheck1">Remove white Spaces</label>
+        </div>
+        {% comment %} capitalize 1st letter of a words {% endcomment %}
+        <div class="form-check radio-col"> 
+          <input type="radio" class="form-check-input" id="exampleCheck1" name="antxt" value="caps">
+          <label class="form-check-label"  for="exampleCheck1">Capitalize Text</label>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Analyze Text</button>
+      
+    </form>
+
+</div>
+{% endblock body %}
